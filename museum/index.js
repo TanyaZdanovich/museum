@@ -1,3 +1,43 @@
+/*menu*/
+let menuBtn = document.querySelector('.nav__btn');
+let menu = document.querySelector('.header__nav');
+let menuItem = document.querySelectorAll('.list__item');
+let body = document.querySelector('body');
+let box = document.querySelector('.welcome__box');
+let img = document.querySelector('.nav__image');
+let footer = document.querySelector('.footer__socials');
+
+menuBtn.addEventListener('click', function(){
+	menuBtn.classList.toggle('active');
+	menu.classList.toggle('active');
+	body.classList.toggle('active');
+  box.classList.toggle('active');
+  img.classList.toggle('active');
+  footer.classList.toggle('active');
+});
+
+if (menuItem) {
+	menuItem.forEach(menuItem => {
+	   menuItem.addEventListener('click', function () {
+		  menu.classList.remove('active');
+		  menuBtn.classList.remove('active');
+		  body.classList.remove('active');
+      box.classList.remove('active');
+      img.classList.remove('active');
+      footer.classList.remove('active');
+	   })
+	})
+};
+
+/*explore slider*/
+const exploreSlider = document.querySelector('.explore__slider');
+
+document.querySelector('.box__slider').addEventListener('input', (e) => {
+  exploreSlider.style.setProperty('--position', `${e.target.value}%`);
+})
+
+
+
 /*booking tickets*/
 let buyBtn = document.querySelector('.form__btn');
 let closeBtn = document.querySelector('.booking__close-btn');
@@ -26,6 +66,7 @@ closeBtn.addEventListener('click', function() {
   form.classList.remove('active');
   overlay.classList.remove('active');
 });
+
 /*чтобы после использования прятался плейсхолдер Date Time*/
 /*date input*/
 let date = document.querySelector('.date');
@@ -72,3 +113,96 @@ btnPrev.addEventListener("click", function () {
   sliderIcon[viewSlide].style.backgroundColor = "#d2b183";
   sliderTrack.style.left = -viewSlide * slider + "px";
 });
+
+var x = window.matchMedia("(max-width: 1240px)")
+function sliderSize(x) {
+  if (x.matches) {
+    btnNext.addEventListener("click", function () {
+      sliderIcon[viewSlide].style.backgroundColor = "#fff";
+      if (viewSlide < 5) { 
+          viewSlide;
+      } else { 
+          viewSlide = 0;
+      }
+      sliderIcon[viewSlide].style.backgroundColor = "#d2b183";
+      sliderTrack.style.left = -viewSlide * slider + "px";
+    });
+    btnPrev.addEventListener("click", function () {
+      sliderIcon[viewSlide].style.backgroundColor = "#fff";
+      if (viewSlide > 0) { 
+          viewSlide; 
+      } else { 
+          viewSlide = 0;
+      }
+      sliderIcon[viewSlide].style.backgroundColor = "#d2b183";
+      sliderTrack.style.left = -viewSlide * slider + "px";
+    });
+  }
+};
+sliderSize(x);
+
+var y = window.matchMedia("(max-width: 1024px)")
+function sliderSize(y) {
+  if (y.matches) {
+    btnNext.addEventListener("click", function () {
+      sliderIcon[viewSlide].style.backgroundColor = "#fff";
+      if (viewSlide < 5) { 
+          viewSlide;
+      } else { 
+          viewSlide = 0;
+      }
+      sliderIcon[viewSlide].style.backgroundColor = "#d2b183";
+      sliderTrack.style.left = -viewSlide * slider + "px";
+    });
+    btnPrev.addEventListener("click", function () {
+      sliderIcon[viewSlide].style.backgroundColor = "#fff";
+      if (viewSlide > 0) { 
+          viewSlide; 
+      } else { 
+          viewSlide = 0;
+      }
+      sliderIcon[viewSlide].style.backgroundColor = "#d2b183";
+      sliderTrack.style.left = -viewSlide * slider + "px";
+    });
+  }
+};
+
+sliderSize(y);
+
+/*video slider*/
+var left=1;
+var right=3;
+
+function show() {
+  for(i=left; i<=right;i++) {
+    document.querySelector(".c"+i).style.display="block";
+  }
+}
+
+function moveRight() {
+  if (left<=3 && right<=3) { 
+  document.querySelector(".c"+left).style.display="none";
+  left+=1;
+  right+=1;
+  
+  for(i=left; i<=right;i++) {
+    document.querySelector(".c"+i).style.display="block";
+  }
+ }
+  else 
+    return;
+}
+
+function moveLeft() {
+  if (left>=2 && right>=2) { 
+  document.querySelector(".c"+right).style.display="none";
+  left-=1;
+  right-=1;
+  
+  for(i=left; i<=right;i++) {
+    document.querySelector(".c"+i).style.display="block";
+  }
+ }
+  else 
+    return;
+}
